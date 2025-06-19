@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { useCart } from '../context/CartContext'
 import { Link } from 'react-router-dom'
 import ItemCount from './ItemCount'
@@ -6,9 +7,14 @@ import './ItemDetail.css'
 const ItemDetail = ({ product }) => {
   const { addToCart } = useCart()
 
+  const [showToast, setShowToast] = useState(false)
+  const [toastMsg, setToastMsg] = useState('')
+
   const handleAdd = (quantity) => {
     addToCart(product, quantity)
-    alert(`Agregaste ${quantity} x ${product.name} al carrito`)
+    setToastMsg(`Agregaste ${quantity} x ${product.name} al carrito`)
+    setShowToast(true)
+    setTimeout(() => setShowToast(false), 2000)
   }
 
   return (
@@ -33,9 +39,11 @@ const ItemDetail = ({ product }) => {
           </Link>
         </div>
       </div>
+
+      {/* TOAST */}
+      {showToast && <div className="toast">{toastMsg}</div>}
     </div>
   )
 }
 
 export default ItemDetail
-

@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import products from "../data/products";
 import "./Home.css";
 
-// Categorías de ejemplo
 const categories = [
   { name: "Guitarras", icon: "🎸" },
   { name: "Teclados", icon: "🎹" },
@@ -13,10 +12,8 @@ const categories = [
 ];
 
 export default function Home() {
-  // Carousel state
   const [current, setCurrent] = useState(0);
 
-  // Cambia el slide cada 4s
   useEffect(() => {
     if (products.length === 0) return;
     const timer = setTimeout(() => {
@@ -27,13 +24,22 @@ export default function Home() {
 
   return (
     <div className="home-container">
-      {/* Hero/banner */}
+      {/* Nuevo Hero/banner visual */}
       <section className="hero">
-        <h1>Loopify</h1>
-        <p>Tu tienda online de instrumentos y accesorios musicales</p>
-        <Link to="/productos">
-          <button className="btn-primary">Ver todos los productos</button>
-        </Link>
+        <div className="hero-content">
+          <div className="hero-text">
+            <h1>Loopify</h1>
+            <p>Transformá tu música con los mejores equipos de estudio y performance.</p>
+            <Link to="/productos">
+              <button className="hero-btn">Ver todos los productos</button>
+            </Link>
+          </div>
+          <img
+            src="/public/consoladj2.png"
+            alt="Controlador MIDI"
+            className="hero-img"
+          />
+        </div>
       </section>
 
       {/* Carousel de productos destacados */}
@@ -74,9 +80,7 @@ export default function Home() {
             </div>
           </>
         )}
-        {products.length === 0 && (
-          <p>No hay productos destacados aún.</p>
-        )}
+        {products.length === 0 && <p>No hay productos destacados aún.</p>}
       </section>
 
       {/* Categorías rápidas */}
