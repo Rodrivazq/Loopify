@@ -1,4 +1,3 @@
-// src/components/ItemCount.jsx
 import { useState } from 'react'
 
 const ItemCount = ({ stock, initial, onAdd }) => {
@@ -13,15 +12,18 @@ const ItemCount = ({ stock, initial, onAdd }) => {
   }
 
   return (
-    <div style={{ marginTop: '1rem', textAlign: 'center' }}>
-      <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', marginBottom: '1rem' }}>
-        <button onClick={decrement}>-</button>
-        <span>{count}</span>
-        <button onClick={increment}>+</button>
+    <div>
+      <div className="qty-selector">
+        <button className="qty-btn" onClick={decrement}>-</button>
+        <span className="qty-value">{count}</span>
+        <button className="qty-btn" onClick={increment}>+</button>
       </div>
-      <button onClick={() => onAdd(count)}>Agregar al carrito</button>
+      <button className="btn-add-cart" onClick={() => onAdd(count)}>
+        Agregar al carrito
+      </button>
     </div>
   )
 }
 
 export default ItemCount
+

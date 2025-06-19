@@ -1,5 +1,7 @@
 import { useCart } from '../context/CartContext'
 import { Link } from 'react-router-dom'
+import { useState } from 'react'
+import './Cart.css'
 
 const Cart = () => {
   const {
@@ -10,13 +12,32 @@ const Cart = () => {
     decreaseQuantity
   } = useCart()
 
+  const [feedback, setFeedback] = useState('')
+
   const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0)
+
+  // Mensaje animado al vaciar carrito
+  const handleClearCart = () => {
+    if (window.confirm('¿Seguro que quieres vaciar el carrito?')) {
+      clearCart()
+      setFeedback('¡Carrito vaciado!')
+      setTimeout(() => setFeedback(''), 1800)
+    }
+  }
+
+  // Mensaje animado al eliminar producto
+  const handleRemoveItem = (id, name) => {
+    removeItem(id)
+    setFeedback(`"${name}" eliminado del carrito`)
+    setTimeout(() => setFeedback(''), 1600)
+  }
 
   if (cart.length === 0) {
     return (
-      <div style={{ padding: '2rem', textAlign: 'center' }}>
+      <div className="cart-empty">
         <h2>Tu carrito está vacío</h2>
-        <Link to="/productos" style={{ marginTop: '1rem', display: 'inline-block', textDecoration: 'underline' }}>
+        {feedback && <p className="cart-feedback">{feedback}</p>}
+        <Link to="/productos" className="volver-link">
           Volver al catálogo
         </Link>
       </div>
@@ -24,39 +45,42 @@ const Cart = () => {
   }
 
   return (
-    <div style={{ padding: '2rem' }}>
+    <div className="cart-container">
       <h2>Carrito de compras</h2>
+      {feedback && <p className="cart-feedback">{feedback}</p>}
       {cart.map(item => (
-        <div key={item.id} style={{
-          border: '1px solid #ccc',
-          marginBottom: '1rem',
-          padding: '1rem',
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          flexWrap: 'wrap'
-        }}>
-          <div style={{ flex: '1 1 200px' }}>
-            <h4>{item.name}</h4>
-            <p>${item.price} x {item.quantity} = ${item.price * item.quantity}</p>
+        <div key={item.id} className="cart-item">
+          <div className="cart-item-imgbox">
+            <img src={item.image} alt={item.name} className="cart-item-img" />
           </div>
-
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-            <button onClick={() => decreaseQuantity(item.id)}>-</button>
-            <span>{item.quantity}</span>
-            <button onClick={() => increaseQuantity(item.id)}>+</button>
-            <button onClick={() => removeItem(item.id)} style={{ marginLeft: '1rem', color: 'red' }}>❌</button>
+          <div className="cart-item-info">
+            <h4>{item.name}</h4>
+            <p>${item.price} x {item.quantity} = <span className="item-total">${item.price * item.quantity}</span></p>
+          </div>
+          <div className="cart-item-controls">
+            <button className="qty-btn" onClick={() => decreaseQuantity(item.id)}>-</button>
+            <span className="qty-value">{item.quantity}</span>
+            <button className="qty-btn" onClick={() => increaseQuantity(item.id)}>+</button>
+            <button
+              className="remove-btn"
+              onClick={() => handleRemoveItem(item.id, item.name)}
+              title="Quitar"
+            >
+              ❌
+            </button>
           </div>
         </div>
       ))}
 
-      <h3>Total: ${total}</h3>
-      <button onClick={clearCart} style={{ marginTop: '1rem' }}>Vaciar carrito</button>
-      <Link to="/checkout">
-        <button className="mt-4 bg-green-600 text-white px-4 py-2 rounded">
-          Finalizar compra
-        </button>
-      </Link>
+      <h3 className="cart-total">Total: ${total}</h3>
+      <div className="cart-actions">
+        <button className="clear-btn" onClick={handleClearCart}>Vaciar carrito</button>
+        <Link to="/checkout">
+          <button className="checkout-btn">
+            Finalizar compra
+          </button>
+        </Link>
+      </div>
     </div>
   )
 }

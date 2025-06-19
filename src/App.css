@@ -40,3 +40,28 @@
 .read-the-docs {
   color: #888;
 }
+
+.hero {
+  background: #eebbc3;
+  color: #232946;
+  text-align: center;
+  padding: 2.5rem 1rem;
+  border-radius: 18px;
+  margin: 2rem 0;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.04);
+}
+
+.btn-primary {
+  margin-top: 2rem;
+  padding: 0.7rem 1.8rem;
+  font-size: 1.2rem;
+  background-color: #232946;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  transition: background 0.2s;
+  cursor: pointer;
+}
+.btn-primary:hover {
+  background-color: #282e3a;
+}
