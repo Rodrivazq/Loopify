@@ -188,7 +188,6 @@
   transform: scale(1.15);
 }
 
-/* OCULTAR flechas en mobile */
 @media (max-width: 750px) {
   .carousel-btn {
     display: none !important;

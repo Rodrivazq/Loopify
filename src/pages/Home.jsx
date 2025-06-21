@@ -24,7 +24,6 @@ export default function Home() {
 
   return (
     <div className="home-container">
-      {/* Nuevo Hero/banner visual */}
       <section className="hero">
         <div className="hero-content">
           <div className="hero-text">

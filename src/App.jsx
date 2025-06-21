@@ -13,7 +13,7 @@ function App() {
   return (
     <>
       <Navbar />
-      <WhatsAppButton /> {/* 👈 Aquí, fuera de las rutas para que esté siempre visible */}
+      <WhatsAppButton />
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
