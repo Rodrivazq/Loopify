@@ -1,34 +1,40 @@
-# Loopify 🎸 - E-commerce de Instrumentos Musicales
+# Loopify 🎸
 
-Loopify es una tienda online para la compra de instrumentos y accesorios musicales.  
-Fue desarrollado como proyecto final para el curso de React JS en Coderhouse.
+**Loopify** es una tienda online de instrumentos y accesorios musicales, creada como proyecto final para React JS en Coderhouse.
 
-## 🛠️ Funcionalidades principales
+## 🚀 Demo online
 
-- **Página de inicio con carousel de productos destacados**
-- **Catálogo** de productos filtrables por categoría
-- **Detalle de producto** con imágenes y descripción
-- **Carrito de compras** (con suma/resta/cantidad y eliminación)
-- **Checkout** para completar la compra (formulario simulado)
-- **Resumen de compra** al finalizar
-- **Navegación rápida y responsive**
-- **Estilos modernos, diseño mobile-first**
+🔗 [Ver Loopify funcionando](https://loopify-3fhssxku0f-rodrigo-vazquezs-projects-29421ed0.vercel.app)
 
-## 🚀 Tecnologías usadas
+## 📸 Screenshots
 
-- React JS
+![Home]
+
+
+## ⚡ Características principales
+
+- Página de inicio con carousel de productos destacados
+- Catálogo de productos filtrables por categoría
+- Detalle de producto y suma al carrito
+- Carrito de compras (suma, resta, elimina, vacía)
+- Checkout simulado (formulario)
+- Responsive/mobile first
+- Estilos modernos y personalizados
+
+## 🛠️ Tecnologías usadas
+
+- React JS + Vite
 - React Router DOM
-- CSS clásico y personalizado
-- (Opcional: Firebase para persistencia/carrito)
+- CSS Modules y estilos propios
 
-📂 Estructura del proyecto
-/src/components → componentes reutilizables (Navbar, ProductList, etc)
+## 📦 ¿Cómo clonar y correr el proyecto?
 
-/src/pages → páginas principales (Home, Cart, Checkout, etc)
+```bash
+git clone https://github.com/Rodrivazq/Loopify.git
+cd Loopify
+npm install
+npm run dev
 
-/src/context → contexto global de carrito
-
-/src/App.jsx → rutas y layout principal
 
 👤 Autor
 Rodrigo Vázquez
