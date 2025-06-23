@@ -2,10 +2,6 @@
 
 **Loopify** es una tienda online de instrumentos y accesorios musicales, creada como proyecto final para React JS en Coderhouse.
 
-## 🚀 Demo online
-
-🔗 [Ver Loopify funcionando](loopify-3fhsxku0f-rodrigo-vazquezs-projects-29421ed0.vercel.app)
-
 ## 📸 Screenshots
 
 ![Home](https://github.com/user-attachments/assets/36926506-a4a3-4207-a4fe-114da626d66f)
