@@ -8,7 +8,8 @@
 
 ## 📸 Screenshots
 
-![Home]
+![Home](https://github.com/user-attachments/assets/36926506-a4a3-4207-a4fe-114da626d66f)
+
 
 
 ## ⚡ Características principales
