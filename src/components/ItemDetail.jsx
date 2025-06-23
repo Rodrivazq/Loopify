@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useCart } from '../context/CartContext'
 import { Link } from 'react-router-dom'
 import ItemCount from './ItemCount'
-import './/ItemDetail.css'
+import './ItemDetail.css'
 
 const ItemDetail = ({ product }) => {
   const { addToCart } = useCart()
