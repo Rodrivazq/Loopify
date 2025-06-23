@@ -34,7 +34,7 @@ export default function Home() {
             </Link>
           </div>
           <img
-            src="/public/consoladj2.png"
+            src="https://www.pioneerdj.com/-/media/pioneerdj/images/products/all-in-one-system/opus-quad/opus-quad_prm_angle_221223.png"
             alt="Controlador MIDI"
             className="hero-img"
           />
