@@ -4,6 +4,10 @@
 
 ## 📸 Screenshots
 
+
+![Funcionalidad](https://github.com/user-attachments/assets/8a592fe1-e36a-4c8c-ab59-0f0e3d78489a)
+
+
 ![Home](https://github.com/user-attachments/assets/36926506-a4a3-4207-a4fe-114da626d66f)
 
 
