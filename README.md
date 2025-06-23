@@ -1,12 +1,35 @@
-# React + Vite
+# Loopify 🎸 - E-commerce de Instrumentos Musicales
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Loopify es una tienda online para la compra de instrumentos y accesorios musicales.  
+Fue desarrollado como proyecto final para el curso de React JS en Coderhouse.
 
-Currently, two official plugins are available:
+## 🛠️ Funcionalidades principales
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Página de inicio con carousel de productos destacados**
+- **Catálogo** de productos filtrables por categoría
+- **Detalle de producto** con imágenes y descripción
+- **Carrito de compras** (con suma/resta/cantidad y eliminación)
+- **Checkout** para completar la compra (formulario simulado)
+- **Resumen de compra** al finalizar
+- **Navegación rápida y responsive**
+- **Estilos modernos, diseño mobile-first**
 
-## Expanding the ESLint configuration
+## 🚀 Tecnologías usadas
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- React JS
+- React Router DOM
+- CSS clásico y personalizado
+- (Opcional: Firebase para persistencia/carrito)
+
+📂 Estructura del proyecto
+/src/components → componentes reutilizables (Navbar, ProductList, etc)
+
+/src/pages → páginas principales (Home, Cart, Checkout, etc)
+
+/src/context → contexto global de carrito
+
+/src/App.jsx → rutas y layout principal
+
+👤 Autor
+Rodrigo Vázquez
+Proyecto final para React JS - Coderhouse 2025
