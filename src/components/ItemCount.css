@@ -37,8 +37,10 @@
   font-weight: bold;
   font-size: 1.1rem;
   cursor: pointer;
-  transition: background 0.2s, color 0.2s;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  transition:
+    background 0.2s,
+    color 0.2s;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
 }
 .btn-add-cart:hover {
   background: #232946;

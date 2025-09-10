@@ -1,3 +1,4 @@
+import AdminProducts from './pages/AdminProducts';
 import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import ItemListContainer from './components/ItemListContainer';
@@ -20,6 +21,7 @@ function App() {
           <Route path="/productos" element={<ItemListContainer />} />
           <Route path="/producto/:id" element={<ItemDetailContainer />} />
           <Route path="/contacto" element={<Contacto />} />
+          <Route path="/admin" element={<AdminProducts />} />
           <Route path="/confirmacion" element={<Confirmacion />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout" element={<Checkout />} />

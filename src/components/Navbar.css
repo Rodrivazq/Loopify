@@ -5,7 +5,7 @@
   color: #fff;
   padding: 0.8rem 2rem;
   z-index: 1000;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .navbar-content {
@@ -94,7 +94,9 @@
     overflow: hidden;
     max-height: 0;
     opacity: 0;
-    transition: max-height 0.3s ease, opacity 0.3s ease;
+    transition:
+      max-height 0.3s ease,
+      opacity 0.3s ease;
   }
 
   .navbar-links.show {
@@ -108,4 +110,3 @@
     width: 100%;
   }
 }
-

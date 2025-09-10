@@ -1,0 +1,227 @@
+.item-detail-container {
+  max-width: 850px;
+  margin: 2.5rem auto 2rem auto;
+  padding: 2.2rem 1.2rem;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 6px 36px #23294612;
+  position: relative;
+  min-height: 380px;
+}
+
+.item-detail-content {
+  display: flex;
+  gap: 2.5rem;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.item-detail-img {
+  width: 320px;
+  max-width: 95vw;
+  height: 290px;
+  object-fit: cover;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px #23294622;
+  background: #f4f4f6;
+  transition: transform 0.22s;
+}
+.item-detail-img:hover {
+  transform: scale(1.03) rotate(-1deg);
+}
+
+.item-detail-info {
+  flex: 1;
+  min-width: 250px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.3rem;
+  justify-content: flex-start;
+}
+
+.item-detail-title {
+  margin-top: 0;
+  font-size: 2rem;
+  color: #232946;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.item-detail-price {
+  color: #e95793;
+  font-size: 1.45rem;
+  font-weight: bold;
+  margin: 0.7rem 0;
+}
+
+.item-detail-description {
+  color: #232946;
+  font-size: 1.09rem;
+  background: #f9f9fa;
+  border-radius: 8px;
+  padding: 0.8rem 1rem;
+}
+
+.btn-primary {
+  font-size: 1.08rem;
+  padding: 0.65rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  background: #232946;
+  color: #fff;
+  transition: background 0.18s;
+  box-shadow: 0 2px 8px #23294611;
+  margin-right: 1.2rem;
+}
+
+.btn-primary:hover {
+  background: #171e2a;
+}
+
+.volver-link {
+  color: #3b82f6;
+  text-decoration: underline;
+  font-size: 1rem;
+  margin-top: 2rem;
+  display: inline-block;
+  transition: color 0.15s;
+}
+
+.volver-link:hover {
+  color: #232946;
+}
+
+/* ---- Botón Agregar al carrito ---- */
+.btn-add-cart {
+  background: #232946;
+  color: #fff;
+  font-size: 1.11rem;
+  font-weight: 600;
+  padding: 0.65rem 1.7rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 1.2rem;
+  margin-bottom: 1.1rem;
+  transition: background 0.17s, transform 0.13s, box-shadow 0.14s;
+  box-shadow: 0 2px 10px #23294612;
+}
+.btn-add-cart:hover {
+  background: #eebbc3;
+  color: #232946;
+  transform: scale(1.04);
+  box-shadow: 0 4px 14px #23294618;
+}
+
+/* ---- Botones + y - de cantidad ---- */
+.qty-selector {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 1.2rem;
+}
+
+.qty-btn {
+  background: #eebbc3;
+  color: #232946;
+  border: none;
+  border-radius: 50%;
+  font-size: 1.15rem;
+  font-weight: bold;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.17s, color 0.14s, box-shadow 0.13s;
+  box-shadow: 0 1px 5px #23294610;
+}
+
+.qty-btn:active,
+.qty-btn:hover {
+  background: #232946;
+  color: #fff;
+  box-shadow: 0 2px 8px #23294615;
+}
+
+.qty-value {
+  font-size: 1.2rem;
+  min-width: 28px;
+  text-align: center;
+  font-weight: 500;
+  color: #232946;
+}
+
+.volver-divider {
+  border: none;
+  border-top: 1.5px solid #ececec;
+  margin: 2.2rem 0 1.1rem 0;
+  width: 100%;
+}
+
+/* ---- Toast ---- */
+.toast {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: #232946;
+  color: #fff;
+  padding: 18px 28px;
+  border-radius: 12px;
+  box-shadow: 0 8px 28px #23294633;
+  font-size: 1.13rem;
+  z-index: 9999;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  animation: fadeInOut 2s;
+  opacity: 0.98;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.toast::before {
+  content: "✔";
+  font-size: 1.2rem;
+  margin-right: 0.5rem;
+  color: #eebbc3;
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translateY(24px);}
+  12% { opacity: 1; transform: translateY(0);}
+  88% { opacity: 1; transform: translateY(0);}
+  100% { opacity: 0; transform: translateY(24px);}
+}
+
+/* Responsive */
+@media (max-width: 730px) {
+  .item-detail-content {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
+  }
+  .item-detail-img {
+    width: 100%;
+    height: 200px;
+  }
+  .toast {
+    bottom: 20px;
+    right: 10px;
+    font-size: 1rem;
+    padding: 13px 18px;
+  }
+}
+
+@media (max-width: 500px) {
+  .item-detail-container {
+    padding: 1.2rem 0.3rem;
+  }
+  .toast {
+    font-size: 0.99rem;
+    padding: 10px 12px;
+  }
+}

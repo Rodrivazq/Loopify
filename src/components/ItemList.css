@@ -1,3 +1,4 @@
+/* ====== Grid base (tu estilo) ====== */
 .grid-container {
   display: grid;
   grid-template-columns: 1fr;
@@ -17,47 +18,151 @@
   }
 }
 
+/* ====== Cabecera & estados ====== */
+.catalog-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 1rem 1rem 0.5rem 1rem;
+}
+
+.catalog-header h2 {
+  font-size: 1.8rem;
+  margin: 0;
+}
+
+.catalog-meta {
+  color: #555;
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+.catalog-empty {
+  padding: 1.25rem;
+  margin: 0 1rem;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 12px #0001;
+}
+
+/* ====== Toolbar de filtros ====== */
+.catalog-toolbar {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 0.75rem 1rem 1.25rem 1rem;
+}
+
+.toolbar-group {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.filter-input,
+.filter-select {
+  padding: 0.6rem 0.9rem;
+  border: 2px solid #23294633;
+  border-radius: 8px;
+  font-size: 1rem;
+  min-width: 200px;
+  background: #fff;
+  transition: border 0.2s, box-shadow 0.2s;
+}
+
+.filter-input:focus,
+.filter-select:focus {
+  outline: none;
+  border-color: #232946;
+  box-shadow: 0 0 0 3px #23294622;
+}
+
+/* util para accesibilidad (label oculto visualmente) */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ====== Cards (mejorado sobre tu base) ====== */
 .item-card {
-  border: 1px solid #ccc;
+  border: 1px solid #e6e6e9;
   padding: 1rem;
-  border-radius: 0.5rem;
+  border-radius: 0.8rem;
   max-width: 100%;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 8px #0000000d;
   display: flex;
   flex-direction: column;
   background: #fff;
+  transition: transform 0.16s, box-shadow 0.2s;
+}
+
+.item-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px #0000001f;
 }
 
 .item-card img {
   width: 100%;
-  height: 200px; /* ⬅️ altura fija */
-  object-fit: cover; /* ⬅️ recorta y encaja sin deformar */
+  height: 200px; /* altura fija */
+  object-fit: cover; /* recorta y encaja sin deformar */
   margin-bottom: 0.75rem;
-  border-radius: 0.25rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 6px #0001;
 }
 
-
 .item-card h3 {
-  font-size: 1.1rem;
-  margin-bottom: 0.5rem;
+  font-size: 1.12rem;
+  margin: 0.4rem 0 0.25rem 0;
+  color: #232946;
 }
 
 .item-card p {
   margin: 0.25rem 0;
 }
 
-.item-card a {
+.item-card .item-price {
+  font-weight: 700;
+  color: #232946cc;
+  margin-top: 0.25rem;
+}
+
+/* link/botón "ver" */
+.item-card a,
+.item-card .btn-link {
   margin-top: auto;
   align-self: flex-start;
   text-decoration: none;
-  color: white;
-  background: #222;
-  padding: 0.5rem 1rem;
-  border-radius: 0.25rem;
-  font-size: 0.9rem;
-  transition: background 0.2s;
+  color: #fff;
+  background: #232946;
+  padding: 0.55rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 0.95rem;
+  transition: background 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 6px #23294633;
 }
 
-.item-card a:hover {
-  background: #444;
+.item-card a:hover,
+.item-card .btn-link:hover {
+  background: #171e2a;
+  box-shadow: 0 4px 14px #23294633;
+}
+
+/* Responsive refinado */
+@media (max-width: 520px) {
+  .catalog-header {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  .filter-input,
+  .filter-select {
+    min-width: unset;
+    width: 100%;
+  }
 }
