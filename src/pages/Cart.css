@@ -4,7 +4,8 @@
   --accent: #eebbc3;
   --highlight: #e95793;
   --success: #3eb671;
-  --font: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font:
+    system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
 .cart-container {
@@ -161,7 +162,9 @@
   padding: 0.55rem 1.3rem;
   border-radius: 7px;
   cursor: pointer;
-  transition: background 0.18s, color 0.18s;
+  transition:
+    background 0.18s,
+    color 0.18s;
 }
 
 .clear-btn {

@@ -1,7 +1,7 @@
-import { useCart } from "../context/CartContext";
-import { Link } from "react-router-dom";
-import { useState } from "react";
-import "./Cart.css";
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useCart } from '../hooks/useCart';
+import './Cart.css';
 
 export default function Cart() {
   const {
@@ -10,28 +10,24 @@ export default function Cart() {
     clearCart,
     increaseQuantity,
     decreaseQuantity,
-    addToCart,
   } = useCart();
 
-  const [feedback, setFeedback] = useState("");
+  const [feedback, setFeedback] = useState('');
 
-  const total = cart.reduce(
-    (sum, item) => sum + item.price * item.quantity,
-    0
-  );
+  const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
   const handleClearCart = () => {
-    if (window.confirm("¿Seguro que quieres vaciar el carrito?")) {
+    if (window.confirm('¿Seguro que quieres vaciar el carrito?')) {
       clearCart();
-      setFeedback("¡Carrito vaciado!");
-      setTimeout(() => setFeedback(""), 1800);
+      setFeedback('¡Carrito vaciado!');
+      setTimeout(() => setFeedback(''), 1800);
     }
   };
 
   const handleRemoveItem = (id, name) => {
     removeItem(id);
     setFeedback(`"${name}" eliminado del carrito`);
-    setTimeout(() => setFeedback(""), 1600);
+    setTimeout(() => setFeedback(''), 1600);
   };
 
   if (cart.length === 0) {
@@ -54,18 +50,19 @@ export default function Cart() {
       <div className="cart-list">
         {cart.map((item) => (
           <article key={item.id} className="cart-item">
-            <div className="cart-item-imgbox">
-              <img
-                src={item.image}
-                alt={item.name}
-                className="cart-item-img"
-              />
-            </div>
+<div className="cart-item-imgbox">
+  <img
+    src={item.imageUrl || item.image || "/placeholder.png"} // 👈 acá
+    alt={item.name}
+    className="cart-item-img"
+    loading="lazy"
+  />
+</div>
 
             <div className="cart-item-info">
               <h4>{item.name}</h4>
               <p>
-                ${item.price} x {item.quantity} ={" "}
+                ${item.price} x {item.quantity} ={' '}
                 <span className="item-total">
                   ${item.price * item.quantity}
                 </span>

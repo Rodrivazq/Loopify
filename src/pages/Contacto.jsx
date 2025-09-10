@@ -1,87 +1,151 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import "./Contacto.css";
 
-export default function Contacto() {
-  const [form, setForm] = useState({
-    nombre: "",
-    email: "",
-    mensaje: "",
-  });
-  const [enviado, setEnviado] = useState(false);
+const EMAIL_RE = /^\S+@\S+\.\S+$/;
 
-  const handleChange = (e) => {
-    setForm({
-      ...form,
-      [e.target.name]: e.target.value,
-    });
+export default function Contacto() {
+  const [form, setForm] = useState({ nombre: "", email: "", mensaje: "" });
+  const [sending, setSending] = useState(false);
+  const [status, setStatus] = useState({ ok: false, error: "" });
+  const honeypotRef = useRef(null); // campo oculto anti-bots
+
+  const onChange = (e) => setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
+
+  const validate = () => {
+    if (!form.nombre.trim()) return "El nombre es obligatorio.";
+    if (!EMAIL_RE.test(form.email)) return "Ingresá un email válido.";
+    if (form.mensaje.trim().length < 10) return "El mensaje debe tener al menos 10 caracteres.";
+    return "";
   };
 
-  const handleSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
-    // Aquí podrías conectar con backend o servicio de envío
-    setEnviado(true);
-    setForm({ nombre: "", email: "", mensaje: "" });
-    setTimeout(() => setEnviado(false), 4000);
+    setStatus({ ok: false, error: "" });
+
+    // honeypot: si tiene contenido, es bot
+    if (honeypotRef.current?.value) return;
+
+    const err = validate();
+    if (err) {
+      setStatus({ ok: false, error: err });
+      return;
+    }
+
+    try {
+      setSending(true);
+
+      // 👉 acá podrías hacer fetch a tu backend
+      // await fetch("/api/contact", { method:"POST", headers:{'Content-Type':'application/json'}, body: JSON.stringify(form) })
+
+      // Simulación
+      await new Promise((r) => setTimeout(r, 900));
+
+      setStatus({ ok: true, error: "" });
+      setForm({ nombre: "", email: "", mensaje: "" });
+    } catch (e2) {
+      setStatus({ ok: false, error: "No pudimos enviar tu mensaje. Probá de nuevo." });
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
     <div className="contacto-container">
-      <div className="contacto-card">
-        <h2>📬 Contactanos</h2>
-        <p>¿Tenés dudas o querés saber más? Escribinos, te respondemos enseguida.</p>
+      <div className="contacto-card" role="region" aria-labelledby="ct-title">
+        <h2 id="ct-title">📬 Contactanos</h2>
+        <p className="ct-sub">¿Tenés dudas? Escribinos y te respondemos a la brevedad.</p>
 
-        <form className="contacto-form" onSubmit={handleSubmit}>
+        <form className="contacto-form" onSubmit={onSubmit} noValidate>
+          {/* honeypot, escondido a usuarios reales */}
+          <input
+            ref={honeypotRef}
+            type="text"
+            tabIndex={-1}
+            autoComplete="off"
+            className="hp"
+            aria-hidden="true"
+          />
+
           <div className="form-group">
-            <label htmlFor="nombre">Nombre</label>
+            <label htmlFor="nombre">Nombre <span className="req">*</span></label>
             <input
               id="nombre"
-              type="text"
               name="nombre"
-              value={form.nombre}
-              onChange={handleChange}
-              required
+              type="text"
               placeholder="Tu nombre"
+              value={form.nombre}
+              onChange={onChange}
+              disabled={sending}
+              aria-required="true"
+              aria-invalid={!!status.error && !form.nombre.trim()}
+              autoComplete="name"
             />
           </div>
 
           <div className="form-group">
-            <label htmlFor="email">Email</label>
+            <label htmlFor="email">Email <span className="req">*</span></label>
             <input
               id="email"
-              type="email"
               name="email"
-              value={form.email}
-              onChange={handleChange}
-              required
+              type="email"
               placeholder="tu@email.com"
+              value={form.email}
+              onChange={onChange}
+              disabled={sending}
+              aria-required="true"
+              aria-invalid={!!status.error && !EMAIL_RE.test(form.email)}
+              autoComplete="email"
             />
           </div>
 
           <div className="form-group">
-            <label htmlFor="mensaje">Mensaje</label>
+            <label htmlFor="mensaje">Mensaje <span className="req">*</span></label>
             <textarea
               id="mensaje"
               name="mensaje"
-              value={form.mensaje}
-              onChange={handleChange}
-              required
               rows={5}
               placeholder="Contanos en qué te podemos ayudar"
+              value={form.mensaje}
+              onChange={onChange}
+              disabled={sending}
+              aria-required="true"
+              aria-invalid={!!status.error && form.mensaje.trim().length < 10}
             />
           </div>
 
-          <button type="submit" className="btn-primary">Enviar mensaje</button>
-
-          {enviado && (
-            <p className="enviado-msg">✅ ¡Gracias por escribirnos! Te contactaremos pronto.</p>
+          {status.error && (
+            <div className="form-alert error" role="alert">
+              {status.error}
+            </div>
           )}
+          {status.ok && (
+            <div className="form-alert success" role="status">
+              ✅ ¡Gracias por escribirnos! Te contactaremos pronto.
+            </div>
+          )}
+
+          <button
+            type="submit"
+            className="btn-primary"
+            disabled={sending}
+            aria-busy={sending}
+          >
+            {sending ? "Enviando..." : "Enviar mensaje"}
+          </button>
         </form>
       </div>
 
-      <div className="contacto-info">
+      <div className="contacto-info" aria-label="Información de contacto">
         <h3>📍 Información de contacto</h3>
-        <p>📧 <a href="mailto:info@loopify.com">info@loopify.com</a></p>
-        <p>📱 <a href="https://wa.me/59812345678" target="_blank" rel="noopener noreferrer">Escribir por WhatsApp</a></p>
+        <p>
+          📧 <a href="mailto:info@loopify.com">info@loopify.com</a>
+        </p>
+        <p>
+          📱{" "}
+          <a href="https://wa.me/59812345678" target="_blank" rel="noopener noreferrer">
+            Escribir por WhatsApp
+          </a>
+        </p>
         <p>📍 Montevideo, Uruguay</p>
       </div>
     </div>

@@ -1,0 +1,128 @@
+.contacto-container {
+  max-width: 550px;
+  margin: 3rem auto;
+  background: #ffffff;
+  padding: 2.5rem 1.5rem;
+  border-radius: 18px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.contacto-container h2 {
+  font-size: 2.3rem;
+  margin-bottom: 0.6rem;
+  color: #232946;
+}
+
+.contacto-container p {
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+  color: #4a4a4a;
+}
+
+.contacto-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.form-group {
+  text-align: left;
+}
+
+.form-group label {
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+  display: block;
+  color: #232946;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  border: 1.6px solid #eebbc3;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  font-size: 1.05rem;
+  background: #f9f9fb;
+  transition: border-color 0.18s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: #232946;
+  outline: none;
+}
+
+.btn-primary {
+  align-self: flex-end;
+  background: #232946;
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.1rem;
+  padding: 0.65rem 1.6rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 2px 6px #0002;
+  margin-top: 0.4rem;
+}
+
+.btn-primary:hover {
+  background: #171e2a;
+  box-shadow: 0 4px 18px #23294633;
+}
+
+.enviado-msg {
+  color: #3eb671;
+  font-weight: 600;
+  margin-top: 1.1rem;
+  font-size: 1.1rem;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.contacto-info {
+  background: #f4f4f6;
+  padding: 1.4rem 1rem;
+  border-radius: 14px;
+  box-shadow: 0 2px 10px #0000000e;
+  font-size: 1.05rem;
+  text-align: center;
+  color: #232946;
+}
+
+.contacto-info h3 {
+  margin-bottom: 1rem;
+  color: #232946;
+}
+
+.contacto-info a {
+  color: #eebbc3;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.contacto-info a:hover {
+  color: #232946;
+  text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 520px) {
+  .contacto-container {
+    padding: 1.6rem 1rem;
+  }
+
+  .btn-primary {
+    width: 100%;
+  }
+}

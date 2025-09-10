@@ -1,4 +1,4 @@
-import './WhatsAppButton.css'
+import './WhatsAppButton.css';
 
 const WhatsAppButton = () => {
   return (

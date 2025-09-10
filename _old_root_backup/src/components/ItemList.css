@@ -1,0 +1,63 @@
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  padding: 1rem;
+}
+
+@media (min-width: 600px) {
+  .grid-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 900px) {
+  .grid-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.item-card {
+  border: 1px solid #ccc;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  max-width: 100%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+}
+
+.item-card img {
+  width: 100%;
+  height: 200px; /* ⬅️ altura fija */
+  object-fit: cover; /* ⬅️ recorta y encaja sin deformar */
+  margin-bottom: 0.75rem;
+  border-radius: 0.25rem;
+}
+
+
+.item-card h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.item-card p {
+  margin: 0.25rem 0;
+}
+
+.item-card a {
+  margin-top: auto;
+  align-self: flex-start;
+  text-decoration: none;
+  color: white;
+  background: #222;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  font-size: 0.9rem;
+  transition: background 0.2s;
+}
+
+.item-card a:hover {
+  background: #444;
+}

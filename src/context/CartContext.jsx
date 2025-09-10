@@ -1,64 +1,78 @@
-import { createContext, useState, useContext } from 'react'
+// src/context/CartContext.jsx
+import { createContext, useState, useEffect } from "react";
 
-const CartContext = createContext()
+export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
-  const [cart, setCart] = useState([])
+  const [cart, setCart] = useState(() => {
+    const stored = localStorage.getItem("cart");
+    return stored ? JSON.parse(stored) : [];
+  });
 
-  const addToCart = (product, quantity) => {
-    const existing = cart.find(item => item.id === product.id)
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
 
-    if (existing) {
-      setCart(prev =>
-        prev.map(item =>
-          item.id === product.id
-            ? { ...item, quantity: item.quantity + quantity }
-            : item
-        )
-      )
-    } else {
-      setCart(prev => [...prev, { ...product, quantity }])
-    }
-  }
+  const addToCart = (product, quantity = 1) => {
+    setCart(prev => {
+      const exists = prev.find(it => it.id === product.id);
+      if (exists) {
+        return prev.map(it =>
+          it.id === product.id
+            ? { ...it, quantity: it.quantity + quantity }
+            : it
+        );
+      }
 
-  const clearCart = () => setCart([])
-  const removeItem = (id) => setCart(prev => prev.filter(item => item.id !== id))
+      // 👇 snapshot del producto con imageUrl
+      const snapshot = {
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        imageUrl: product.imageUrl ?? null, // << importante
+        quantity,
+      };
+
+      return [...prev, snapshot];
+    });
+  };
+
+  const removeItem = (id) => {
+    setCart(prev => prev.filter(it => it.id !== id));
+  };
+
+  const clearCart = () => setCart([]);
 
   const increaseQuantity = (id) => {
     setCart(prev =>
-      prev.map(item =>
-        item.id === id
-          ? { ...item, quantity: item.quantity + 1 }
-          : item
+      prev.map(it =>
+        it.id === id ? { ...it, quantity: it.quantity + 1 } : it
       )
-    )
-  }
+    );
+  };
 
   const decreaseQuantity = (id) => {
     setCart(prev =>
-      prev.map(item =>
-        item.id === id
-          ? { ...item, quantity: item.quantity > 1 ? item.quantity - 1 : 1 }
-          : item
+      prev.map(it =>
+        it.id === id && it.quantity > 1
+          ? { ...it, quantity: it.quantity - 1 }
+          : it
       )
-    )
-  }
+    );
+  };
 
   return (
-    <CartContext.Provider value={{
-      cart,
-      addToCart,
-      clearCart,
-      removeItem,
-      increaseQuantity,
-      decreaseQuantity
-    }}>
+    <CartContext.Provider
+      value={{
+        cart,
+        addToCart,
+        removeItem,
+        clearCart,
+        increaseQuantity,
+        decreaseQuantity,
+      }}
+    >
       {children}
     </CartContext.Provider>
-  )
-}
-
-// Hook personalizado para usar el contexto
-export const useCart = () => useContext(CartContext)
-
-export { CartContext };
+  );
+};
