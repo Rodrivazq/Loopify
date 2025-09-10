@@ -1,0 +1,126 @@
+/* Wrapper general */
+.cat-wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.25rem;
+}
+
+/* Header del catálogo */
+.cat-header {
+  position: relative;
+  background: #1f2640;
+  color: #fff;
+  border-radius: 14px;
+  padding: 18px 20px;
+  margin: 1rem 0 1rem;
+  display: flex;
+  align-items: center;
+  min-height: 64px;
+}
+.cat-header h2 {
+  margin: 0;
+  font-weight: 800;
+  letter-spacing: .2px;
+}
+.cat-count {
+  margin-left: auto;
+  opacity: .85;
+  background: #111827;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: .9rem;
+}
+
+/* Filtros */
+.filters {
+  display: grid;
+  grid-template-columns: 1.2fr .7fr .7fr;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.field-label {
+  font-size: .82rem;
+  color: #6b7280;
+  font-weight: 600;
+  padding-left: 4px;
+}
+
+.input {
+  height: 44px;
+  padding: 10px 12px;
+  border: 2px solid #23294622;
+  border-radius: 10px;
+  font-size: .95rem;
+  background: #fff;
+  outline: none;
+  transition: border-color .15s ease, box-shadow .15s ease;
+}
+.input:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59,130,246,.15);
+}
+
+/* Error */
+.cat-error {
+  color: #b3261e;
+  margin: 12px 2px;
+  font-weight: 600;
+}
+
+/* Skeleton de carga */
+.cat-skeleton {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+  margin-top: 12px;
+}
+.skel-card {
+  height: 280px;
+  border-radius: 16px;
+  background: linear-gradient(90deg,#f2f3f5 25%,#eceef2 37%,#f2f3f5 63%);
+  background-size: 400% 100%;
+  animation: shimmer 1.2s infinite;
+  box-shadow: 0 4px 14px rgba(0,0,0,.05);
+}
+@keyframes shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Estado vacío */
+.cat-empty {
+  background: #fff;
+  border: 1px dashed #e5e7eb;
+  border-radius: 14px;
+  padding: 28px;
+  text-align: center;
+  color: #374151;
+  margin-top: 8px;
+}
+.btn-clear {
+  margin-top: 10px;
+  background: #232946;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: .6rem 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background .15s ease, transform .12s ease;
+}
+.btn-clear:hover { background: #eebbc3; color:#232946; transform: translateY(-1px); }
+
+/* Responsive */
+@media (max-width: 900px) {
+  .filters { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 640px) {
+  .filters { grid-template-columns: 1fr; }
+  .cat-header { padding: 16px; }
+  .cat-count { display: none; }
+}

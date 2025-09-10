@@ -1,0 +1,65 @@
+/* Contenedor general */
+.item-detail-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 3rem 1rem;
+  background: #f7f8fa; /* Fondo gris claro para contraste */
+  min-height: 100vh;
+}
+
+/* Caja donde va el detalle */
+.item-detail-box {
+  width: 100%;
+  max-width: 1100px;
+  background: #fff;
+  border-radius: 20px;
+  padding: 2.5rem 2rem;
+  box-shadow: 0 8px 32px rgba(35, 41, 70, 0.08);
+  animation: fadeIn 0.35s ease;
+}
+
+/* Título superior opcional */
+.item-detail-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+.item-detail-header h1 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #232946;
+}
+.item-detail-header a {
+  color: #3b82f6;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.2s ease;
+}
+.item-detail-header a:hover {
+  color: #232946;
+  text-decoration: underline;
+}
+
+/* Animación suave */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .item-detail-box {
+    padding: 1.5rem 1rem;
+  }
+  .item-detail-header h1 {
+    font-size: 1.5rem;
+  }
+}
