@@ -1,19 +1,37 @@
-import { Router } from 'express';
-import { PrismaClient } from '@prisma/client';
+import { Router, Request, Response } from "express";
+import Category from "../models/Category";
 
-const prisma = new PrismaClient();
 const router = Router();
 
-router.get('/', async (_req, res) => {
-  const cats = await prisma.category.findMany({ orderBy: { name: 'asc' } });
-  res.json(cats);
+// GET /api/categories
+router.get("/", async (_req: Request, res: Response) => {
+  try {
+    const cats = await Category.find().sort({ name: "asc" });
+    res.json(cats);
+  } catch (err) {
+    console.error("list categories error:", err);
+    res.status(500).json({ error: "Error al obtener categorías" });
+  }
 });
 
-router.post('/', async (req, res) => {
-  const { name } = req.body;
-  const cat = await prisma.category.create({ data: { name } });
-  res.status(201).json(cat);
+// POST /api/categories
+router.post("/", async (req: Request, res: Response) => {
+  try {
+    const { name } = req.body;
+    if (!name || typeof name !== "string") {
+      return res.status(400).json({ error: "name es requerido" });
+    }
+
+    const cat = await Category.create({ name: name.trim() });
+    res.status(201).json(cat);
+  } catch (err: any) {
+    console.error("create category error:", err);
+    // Duplicado (índice unique)
+    if (err?.code === 11000) {
+      return res.status(409).json({ error: "La categoría ya existe" });
+    }
+    res.status(400).json({ error: "No se pudo crear la categoría" });
+  }
 });
 
 export default router;
-
