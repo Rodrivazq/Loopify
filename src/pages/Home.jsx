@@ -151,9 +151,9 @@ export default function Home() {
                 />
                 <h4 className="ci-title">{featured[current].name}</h4>
                 <p className="ci-price">{fmt(featured[current].price)}</p>
-                <Link to={`/producto/${featured[current].id}`}>
-                  <button className="btn-secondary">Ver más</button>
-                </Link>
+              <Link to={`/producto/${featured[current]._id}`}>
+                <button className="btn-secondary">Ver más</button>
+              </Link>
               </div>
 
               <button className="carousel-btn right" onClick={next} aria-label="Siguiente producto">▶</button>
