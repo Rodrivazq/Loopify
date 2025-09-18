@@ -25,7 +25,7 @@ export default function Item({ product }) {
 
         <div className="card-footer">
           <span className="card-price">${product.price}</span>
-        <Link to={`/producto/${product.id || product._id}`} className="card-btn">
+        <Link to={`/producto/${product._id}`} className="card-btn">
           Ver detalle
         </Link>
         </div>
