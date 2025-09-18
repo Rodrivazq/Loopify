@@ -4,13 +4,18 @@ import { useEffect, useState } from "react";
 import ItemDetail from "./ItemDetail";
 import "./ItemDetailContainer.css";
 
-const API_BASE = import.meta.env.VITE_API_BASE_URL ?? "http://localhost:4000";
+// ⚡ log para ver qué valor agarra tu API base
+const API_BASE = import.meta.env.VITE_API_URL ?? "http://localhost:4000";
+console.log("🌐 API_BASE (en build):", API_BASE);
 
 export default function ItemDetailContainer() {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+
+  // ⚡ log para ver qué ID recibe desde la ruta
+  console.log("🆔 ID recibido desde useParams:", id);
 
   useEffect(() => {
     const ac = new AbortController();
