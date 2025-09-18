@@ -1,7 +1,7 @@
 // src/services/api.js
 
 // --- Config ---
-const BASE = import.meta.env.VITE_API_URL || ""; // si usás proxy de Vite, dejalo vacío
+const BASE = import.meta.env.VITE_API_URL
 const API_PREFIX = "/api"; // tu backend está montado en /api
 const DEFAULT_TIMEOUT_MS = 10000;
 
