@@ -89,18 +89,17 @@ export default function AdminProducts() {
     }
   }
 
-  function onEdit(p) {
-    setEditing(p.id);
-    setForm({
-      name: p.name ?? "",
-      description: p.description ?? "",
-      price: String(p.price ?? ""),
-      imageUrl: p.imageUrl ?? "",
-      stock: String(p.stock ?? 0),
-      categoryId: p.categoryId ? String(p.categoryId) : "",
-    });
-  }
-
+function onEdit(p) {
+  setEditing(p.id);
+  setForm({
+    name: p.name ?? "",
+    description: p.description ?? "",
+    price: String(p.price ?? ""),
+    imageUrl: p.imageUrl ?? "",
+    stock: String(p.stock ?? 0),
+    categoryId: p.category ? String(p.category.id) : "", // 👈 usar p.category.id
+  });
+}
   async function onDelete(id) {
     if (!confirm("¿Eliminar este producto?")) return;
     try {
